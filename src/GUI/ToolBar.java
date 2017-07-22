@@ -1,16 +1,15 @@
 package GUI;
 
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+
 
 public class ToolBar extends JPanel implements ActionListener{
-    private JButton wrapText;
     ToolBarListener toolBarListener ;
     boolean wrapTextFlag;
+    private JButton wrapText;
 
     public ToolBar() {
         wrapText = new JButton("Wrap Text");
