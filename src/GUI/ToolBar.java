@@ -12,10 +12,12 @@ public class ToolBar extends JPanel implements ActionListener{
     private JButton wrapText;
 
     public ToolBar() {
-        wrapText = new JButton("Wrap Text");
+        Icon text_icon = new ImageIcon(getClass().getResource("/Assets/wrap_text.png"));
+        wrapText = new JButton(text_icon);
+        wrapText.addActionListener(this);
         add(wrapText);
         wrapTextFlag = false;
-        wrapText.addActionListener(this);
+
 
     }
 
@@ -25,9 +27,8 @@ public class ToolBar extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand() == "Wrap Text"){
             toolBarListener.wraptext(!wrapTextFlag);
             wrapTextFlag = !wrapTextFlag;
-        }
-     }
+
+    }
 }
