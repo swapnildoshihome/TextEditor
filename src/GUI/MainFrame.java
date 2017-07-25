@@ -1,7 +1,10 @@
 package GUI;
 
+import Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainFrame extends JFrame{
 
@@ -15,11 +18,24 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
         add(toolBar,BorderLayout.NORTH);
         add(tab,BorderLayout.CENTER);
+        Model model = new Model();
+        tab.AddText(model.readData());
+
 
         toolBar.setToolBarListener(new ToolBarListener() {
             @Override
             public void wraptext(boolean flag) {
                 tab.wrapText(flag);
+            }
+
+            @Override
+            public void refreshText() {
+                tab.AddText(model.readData());
+            }
+
+            @Override
+            public void saveText() throws IOException {
+                model.saveData(tab.getText());
             }
         });
 
