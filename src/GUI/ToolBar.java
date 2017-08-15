@@ -14,6 +14,8 @@ public class ToolBar extends JToolBar {
     private JButton refreshText;
     private JButton saveText;
 
+    //TODO: Makign button beautiful.
+
     public ToolBar() {
         Icon text_icon = new ImageIcon(getClass().getResource("/Assets/wrap_text.png"));
 
