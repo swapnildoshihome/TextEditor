@@ -14,10 +14,8 @@ public class ToolBar extends JToolBar {
     private JButton refreshText;
     private JButton saveText;
 
-    //TODO: Makign button beautiful.
-
     public ToolBar() {
-        Icon text_icon = new ImageIcon(getClass().getResource("/Assets/wrap_text.png"));
+        Icon text_icon = new ImageIcon(getClass().getResource("/Assets/AlignJustify24.gif"));
 
         wrapText = new JButton(text_icon);
         wrapText.addActionListener(new ActionListener() {
@@ -31,7 +29,7 @@ public class ToolBar extends JToolBar {
         add(wrapText);
         wrapTextFlag = false;
 
-        refreshText = new JButton(new ImageIcon(getClass().getResource("/Assets/refresh.png")));
+        refreshText = new JButton(new ImageIcon(getClass().getResource("/Assets/Refresh24.gif")));
         refreshText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,7 +38,7 @@ public class ToolBar extends JToolBar {
         });
         add(refreshText);
 
-        saveText = new JButton(new ImageIcon(getClass().getResource("/Assets/save.png")));
+        saveText = new JButton(new ImageIcon(getClass().getResource("/Assets/Save24.gif")));
         saveText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

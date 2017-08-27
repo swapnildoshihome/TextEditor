@@ -1,8 +1,6 @@
 package GUI;
 
 import Controller.Controller;
-import Model.Model;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -19,11 +17,8 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
         add(toolBar,BorderLayout.NORTH);
         add(tab,BorderLayout.CENTER);
-        Model model = new Model();
         Controller c = new Controller();
         tab.AddText(c.readData());
-
-
 
         toolBar.setToolBarListener(new ToolBarListener() {
             @Override
@@ -41,6 +36,8 @@ public class MainFrame extends JFrame{
                 c.saveData(tab.getText());
             }
         });
+
+        c.autoSave(tab);
 
     }
 }

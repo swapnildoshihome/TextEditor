@@ -18,7 +18,6 @@ public class Model {
     public Model() {
         charset = Charset.forName("US-ASCII");
         line = null;
-        //TODO making path generic. Currenty its hardcoded
         path = FileSystems.getDefault().getPath("/Users/swapnil.doshi/Documents/TextEditor", "sample.txt");
     }
 
