@@ -1,6 +1,8 @@
 package GUI;
 
 
+import us.monoid.json.JSONException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +15,13 @@ public class ToolBar extends JToolBar {
     private JButton wrapText;
     private JButton refreshText;
     private JButton saveText;
+    private JButton saveAs;
+
 
     public ToolBar() {
         Icon text_icon = new ImageIcon(getClass().getResource("/Assets/AlignJustify24.gif"));
-
         wrapText = new JButton(text_icon);
+        wrapText.setToolTipText("Wrap Text");
         wrapText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,6 +34,7 @@ public class ToolBar extends JToolBar {
         wrapTextFlag = false;
 
         refreshText = new JButton(new ImageIcon(getClass().getResource("/Assets/Refresh24.gif")));
+        refreshText.setToolTipText("Refresh");
         refreshText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,6 +44,7 @@ public class ToolBar extends JToolBar {
         add(refreshText);
 
         saveText = new JButton(new ImageIcon(getClass().getResource("/Assets/Save24.gif")));
+        saveText.setToolTipText("Save");
         saveText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,6 +56,23 @@ public class ToolBar extends JToolBar {
             }
         });
         add(saveText);
+
+
+        saveAs = new JButton(new ImageIcon(getClass().getResource("/Assets/SaveAs24.gif")));
+        saveAs.setToolTipText("Save As");
+        saveAs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    toolBarListener.saveAs();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+        add(saveAs);
 
     }
 

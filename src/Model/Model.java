@@ -15,10 +15,10 @@ public class Model {
     private ArrayList<String> data;
     private Charset charset;
 
-    public Model() {
+    public Model(Path p) {
         charset = Charset.forName("US-ASCII");
         line = null;
-        path = FileSystems.getDefault().getPath("/Users/swapnil.doshi/Documents/TextEditor", "sample.txt");
+        path = p;
     }
 
     public ArrayList<String> readData() {
@@ -42,8 +42,20 @@ public class Model {
 
         for (String s : data) {
             writer.append(s + "\n");
+            writer.write(System.lineSeparator());
         }
         writer.close();
 
     }
+
+    public void saveData(ArrayList<String> data,Path path) throws IOException {
+        BufferedWriter writer = Files.newBufferedWriter(path, charset);
+
+        for (String s : data) {
+            writer.append(s + "\n");
+        }
+        writer.close();
+
+    }
+
 }
