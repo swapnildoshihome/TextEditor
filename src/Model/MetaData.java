@@ -13,6 +13,7 @@ import java.nio.file.Path;
 public class MetaData {
     public JSONObject metadata ;
     private Path metaFilePath;
+    public boolean metaExist;
     private Charset charset;
 
     public MetaData() throws IOException, JSONException {
@@ -20,6 +21,7 @@ public class MetaData {
         metaFilePath = FileSystems.getDefault().getPath("/Users/swapnil.doshi/Documents/TextEditor", "metadata.json");
         charset = Charset.forName("US-ASCII");
         setMetaData();
+        metaExist = Files.exists(metaFilePath);
     }
 
     public void addToMetaObj(String key,String value) throws JSONException {

@@ -23,11 +23,12 @@ public class Tab extends JPanel{
 
 
         String text = "";
-
-        for (String s : data) {
-            text = text + "\n" + s;
+        if (!(data.isEmpty())) {
+            for (String s : data) {
+                text = text + "\n" + s;
+            }
+            textArea.setText(text.replaceFirst("\n", ""));
         }
-        textArea.setText(text.replaceFirst("\n", ""));
     }
 
     public ArrayList<String> getText() {

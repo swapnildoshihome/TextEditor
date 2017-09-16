@@ -5,6 +5,8 @@ import us.monoid.json.JSONException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -25,7 +27,6 @@ public class MainFrame extends JFrame{
         add(tab,BorderLayout.CENTER);
         Controller c = new Controller();
         activePath = c.activePath;
-        System.out.println(activePath);
         tab.AddText(c.readData());
         jFileChooser = new JFileChooser();
 
@@ -57,6 +58,23 @@ public class MainFrame extends JFrame{
         });
 
         c.autoSave(tab, activePath);
+
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                try {
+                    c.saveMetaData(activePath);
+                    c.terminateController();
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                dispose();
+                System.gc();
+            }
+        });
 
     }
 }

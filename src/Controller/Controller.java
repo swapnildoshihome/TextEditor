@@ -4,8 +4,11 @@ import GUI.Tab;
 import Model.Model;
 import Model.MetaData;
 import us.monoid.json.JSONException;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.TimerTask;
@@ -16,16 +19,23 @@ public class Controller {
     private Scheduler sc;
     public Path activePath;
     private MetaData metaData ;
+    public Boolean lastOpenedFileExist ;
 
 
     public Controller() throws IOException, JSONException {
         metaData = new MetaData();
-        activePath = FileSystems.getDefault().getPath(metaData.metadata.getString("lastOpenedFile").toString());
+        setActivePath();
         md = new Model(activePath);
+        setLastOpenedFileExist();
     }
 
     public ArrayList<String> readData(){
+
+        if (lastOpenedFileExist){
         return md.readData();
+        }else{
+            return null;
+        }
     }
 
     public void saveData(ArrayList<String> data) throws IOException {
@@ -57,5 +67,35 @@ public class Controller {
     }
 
 
+    public void setLastOpenedFileExist() {
+        if (metaData.metaExist) {
+            lastOpenedFileExist = Files.exists(activePath);
+        }else {
+            lastOpenedFileExist = false ;
 
+        }
+
+    }
+
+    public void setActivePath() throws JSONException, IOException {
+        activePath = FileSystems.getDefault().getPath(metaData.metadata.getString("lastOpenedFile").toString());
+        if (!(Files.exists(activePath))){
+            String filename = "document";
+            int filecounter = 1;
+            String documentName ;
+
+            do{
+                documentName = filename + filecounter;
+                filecounter++;
+                activePath = FileSystems.getDefault().getPath("/Users/swapnil.doshi/Documents/TextEditor",documentName+".txt");
+            } while(Files.exists(activePath));
+
+            File file = new File(activePath.toString());
+            file.createNewFile();
+        }
+    }
+
+    public void terminateController(){
+        sc.terminateTimer();
+    }
 }

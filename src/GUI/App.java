@@ -10,6 +10,6 @@ public class App {
         MainFrame mainFrame = new MainFrame();
         mainFrame.setSize(1900, 1080);
         mainFrame.setVisible(true);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 }
